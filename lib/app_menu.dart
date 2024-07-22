@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:responsive/first_page.dart';
-import 'package:responsive/page_tile.dart';
-import 'package:responsive/second_page.dart';
 
-final _availabelPages = <String, WidgetBuilder>{
-  'First page': (_) => FirstPage(),
-  'Second page': (_) => SecondPage(),
+import 'first_page.dart';
+import 'page_tile.dart';
+import 'second_page.dart';
+
+final _availablePages = <String, WidgetBuilder>{
+  'First Page': (_) => FirstPage(),
+  'Second Page': (_) => SecondPage(),
 };
 
 class AppMenu extends StatelessWidget {
-  const AppMenu({super.key});
+  const AppMenu({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +20,16 @@ class AppMenu extends StatelessWidget {
       ),
       body: ListView(
         children: <Widget>[
-          for (var pageName in _availabelPages.keys)
-            PageTile(pageName: pageName)
+          for (var pageName in _availablePages.keys)
+            PageTile(
+              pageName: pageName,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: _availablePages[pageName]!),
+                );
+              },
+            )
         ],
       ),
     );

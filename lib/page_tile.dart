@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 class PageTile extends StatelessWidget {
   const PageTile({
-    super.key,
+    Key? key,
     this.selectedPageName,
     required this.pageName,
     this.onPressed,
-  });
+  }) : super(key: key);
 
   final String? selectedPageName;
   final String pageName;
